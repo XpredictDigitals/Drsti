@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    /* Import Google Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: url('{% static "img/undraw/undraw_creative_team_r90h.svg" %}') no-repeat center center/cover;
+    }
+
+    .login-container {
+    background: #fff; /* Solid White */
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Keeps a subtle shadow */
+    text-align: center;
+    color:black;
+    }
+
+
+
+    .login-container h2 {
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      outline: none;
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-login:hover {
+      background: #0056b3;
+    }
+
+    .error {
+      color: #ff4d4d;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .login-container h2 {
+    color: #333; /* Dark Gray for better contrast */
+    }
+
+    .form-control {
+    background: #f5f5f5; /* Light gray for input fields */
+    color: #333; /* Dark text for readability */
+    border: 1px solid #ddd; /* Subtle border */
+    }
+
+    .form-control::placeholder {
+    color: #666; /* Medium gray placeholder */
+    }
+
+    .btn-login {
+    background: #007BFF;
+    color: white;
+    }
+
+    .btn-login:hover {
+    background: #0056b3;
+    }
+
+    .error {
+    color: #d9534f; /* Red for errors */
+    }
+
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+
+    {% if form.errors %}
+      <p class="error">Invalid username or password. Try again.</p>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+      
+      <div class="form-group">
+        <input type="text" name="username" class="form-control" placeholder="Username" required>
+      </div>
+
+      <div class="form-group">
+        <input type="password" name="password" class="form-control" placeholder="Password" required>
+      </div>
+
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+  </div>
+</body>
+</html>

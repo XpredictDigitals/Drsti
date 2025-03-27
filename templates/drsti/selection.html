@@ -1,0 +1,257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Application</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/kai-admin.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* KaiAdmin Official Colors */
+            --primary: #5867dd;
+            --primary-dark: #4755c8;
+            --secondary: #6c757d;
+            --success: #31ce36;
+            --info: #177dff;
+            --warning: #ffad46;
+            --danger: #f25961;
+            --dark: #1a2035;
+            --light: #f8f9fa;
+            --bg-dark: #1a2035;
+            --bg-light: #f5f7fb;
+            --text-dark: #495057;
+            --text-light: #f8f9fa;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            min-height: 100vh;
+            background: url('{% static "img/undraw/undraw_Hello_qnas.svg" %}') no-repeat  ;
+            margin: 0;
+            padding: 20px;
+            color: var(--dark);
+            position :relative;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 16px;
+            backdrop-filter: blur(5px);
+            position:absolute;
+            justify-content:end;
+            
+        }
+        
+        .header {
+            margin-bottom: 50px;
+        }
+        
+        .header h2 {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+        }
+        
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .card-link {
+            text-decoration: none;
+            position: relative;
+        }
+        
+        .card {
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: var(--dark);
+            border-radius: 5%;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--dark);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            background: rgba(88, 103, 221, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: var(--transition);
+            border: 2px solid rgba(88, 103, 221, 0.3);
+        }
+        
+        .card:hover .icon-container {
+            background: var(--primary);
+            transform: scale(1.1);
+            border-color: var(--primary-dark);
+        }
+        
+        .icon {
+            font-size: 36px;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .card:hover .icon {
+            color: var(--text-light);
+            transform: scale(1.1);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-light);
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+        
+        .card:hover .card-title {
+            {% comment %} color: var(--primary); {% endcomment %}
+            font-weight: 600;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 6px;
+            right: 11px;
+            background: var(--primary);
+            color: var(--text-light);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+        
+        .glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(88, 221, 99, 0);
+            transition: var(--transition);
+        }
+        
+
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .card-container {
+                gap: 30px;
+            }
+            
+            .card {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .icon-container {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .icon {
+                font-size: 28px;
+            }
+            
+            .card-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Choose Your Application</h2>
+            <p>Select the platform you want to access</p>
+        </div>
+        
+        <div class="card-container">
+            <!-- Dristi Analytics -->
+            <a href="{% url 'home' %}" class="card-link">
+                <div class="card">
+                    <div class="glow"></div>
+                    <span class="badge">1</span>
+                    <div class="icon-container">
+                        <i class="fas fa-chart-line icon"></i>
+                    </div>
+                    <p class="card-title">Dristi Analytics</p>
+                </div>
+            </a>
+            
+            <!-- Dristi -->
+            <a href="#" class="card-link">
+                <div class="card">
+                    <div class="glow"></div>
+                    <span class="badge">2</span>
+                    <div class="icon-container">
+                        <i class="fas fa-file-alt icon"></i>
+                    </div>
+                    <p class="card-title">Dristi IoT</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

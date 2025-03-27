@@ -68,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'drsti_analytics.context_processors.user_context',  # Add this line
+
             ],
         },
     },
@@ -92,12 +94,10 @@ DATABASES = {
         'NAME': 'Drsti',
         'USER': 'postgres',
         'PASSWORD': 'sdp',
-        'HOST': '192.168.0.106',  
-        'PORT': '5432',  
-    }       
+        'HOST': '192.168.0.106',  # Or your PostgreSQL server IP
+        'PORT': '5432',       # Default PostgreSQL port
+    }
 }
-
-
 # DATABASE_ROUTERS = ["db_setup.db_router.DatabaseRouter"]   
 
 
@@ -146,3 +146,5 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = '/Selection-page/'
+LOGOUT_REDIRECT_URL = '/login/'  # Redirects to the login page after logout
